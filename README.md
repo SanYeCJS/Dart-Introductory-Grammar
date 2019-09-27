@@ -4,36 +4,36 @@
  
 > 作者：SanYeCJS
 
-##环境安装篇
+## 环境安装篇
 
-###Dart本地环境安装（Mac）
+### Dart本地环境安装（Mac）
 >如果本地还没安装homebrew的，需要先安装：
 [Homebrew 安装地址](https://brew.sh/)
 
-`brew tap dart-lang/dart`
-`brew install dart`
+`brew tap dart-lang/dart` <br>
+`brew install dart` <br>
 
 升级版本 `brew upgrade dart`
 
 vscode 需要安装 code runer 和 dart 两个插件
 
-##类型
+## 类型
 >Dart是强大的脚本类语言，可以不定义变量类型使用var字段(类似JavaScript)，系统会自动推导该变量类型
 好比 var str = 'hello world' 也可以用 
 String str = 'hello world' ,
 var a = 1和 int a = 1 
 
-###常量修饰符final和const
+### 常量修饰符final和const
 >const表示值不变，并且一开始就需要赋值
 >final也表示该值不能修改，但可以初始化不赋值，但是只能赋值一次
 代码参考如下：
 
 `final a = new DateTime.now();
- print(a);
- const b = new DateTime.now();
+ print(a);` <br>
+ `const b = new DateTime.now();
  print(b);`
  
-###数值类型 String bool List Map类型分析
+### 数值类型 String bool List Map类型分析
 * String（定义） 可以用三个单引号或者双引号，可以对字符串进行换行调整，输出到控制台还是会按照定义的方式输出，单引号或双引号的不能这么输出
 
 * String(输出格式,例如str1= 'a', str2= 'b') 可以使用print('$str1  $str2');
@@ -48,19 +48,19 @@ var a = 1和 int a = 1
 * Map类型，可以直接用var定义，同样可以用强类型直接指定 var map = new Map();
 
 
-###类型判断 is  和 ？？= 和isEmpty
+### 类型判断 is  和 ？？= 和isEmpty
 >判断是否是某个类型的值,   xx is 类型名称
 
 >??=  如果左边的类型是null ,则将右边的值赋值给左边， 好比 int a;  a??=10;  a的最终结果就是10
 
 >isEmpty判断字符串是否为空串，如果判断对象是null会报错，例  str.isEmpty(属性不是方法)
  
-###类型转换
+### 类型转换
  * Number转String使用toString()
  * String转Number使用 parse()
 
-##Dart常用属性以及方法
->####属性
+## Dart常用属性以及方法
+#### 属性
 * length
 * reversed (倒序列表，输出对象是元组)
 * isEmpty
@@ -69,7 +69,7 @@ var a = 1和 int a = 1
 * values 获取所有的value值（主要用在字典上）
 
 
->####方法
+#### 方法
 * toList() 将list对象转List
 * addAll() 拼接数组
 * indexOf()  查到返回索引值，查不到返回-1
@@ -79,8 +79,8 @@ var a = 1和 int a = 1
 * containsValue()  是否包含某个值
 
 
-##循环方式
-###foreach
+## 循环方式
+### foreach
 
 示例
 
@@ -98,7 +98,7 @@ var a = 1和 int a = 1
 
 ```
 
-###map 
+### map 
 >说明 ：对list中的元素统一操作，例如统一加减乘除等
 
 示例
@@ -111,7 +111,7 @@ var newLi = li.map((value){
 print(newLi);
 ```
 
-###where条件
+### where条件
 
 示例
 
@@ -123,7 +123,7 @@ var newLi = li.where((value){
 print(newLi);
 ```
 
-###any条件
+### any条件
 >说明：判断是否对象当中有某个条件成立即返回true，好比列表中大于6的元素是否存在
 
 示例
@@ -136,7 +136,7 @@ var flag = li.any((value){
 print(flag);
 ```
 
-##函数
+## 函数
 > 注意：函数的形参可以不指定类型，返回值也是可以不指定的，但是为了规范写法，一般还是带上特定的类型做修饰，例如无返回使用关键字 void，形参用强类型限定防止外部参数传入任意类型导致出错。
 
 * 可选参数 printInfo(String username, [int age]);
@@ -195,7 +195,7 @@ main() {
 ```
 
 
-##闭包
+## 闭包
 > 特点：能使变量常住内存并且不会污染全局，既有全局变量的特点也有局部变量的特点
 
 ```
@@ -215,8 +215,8 @@ main() {
 }
 ```
 
-##类
-###初始化声明
+## 类
+### 初始化声明
 > 可以在生成对象的同时初始化内部参数，如下代码片段：
 
 ```
@@ -244,7 +244,7 @@ main() {
 }
 ```
 
-###默认构造函数
+### 默认构造函数
 >  默认构造函数跟类名一致，如下代码片段：
 
 ```
@@ -277,7 +277,7 @@ class Person{
   Person(this.name, this.age);
 }
 ```
-###命名构造函数 
+### 命名构造函数 
 > 一个类写多个命名构造函数，写法如下：
 
 ```
@@ -321,7 +321,7 @@ class Person{
   }
 }
 ```
-###对象操作符
+### 对象操作符
 
 * ？条件运算符（如果为空，后续操作不执行，例如p为null，调用getInfo方法，政策执行会报错，如果加上p?.getInfo()就不会调用了）,示例代码如下：
 
@@ -380,10 +380,10 @@ main(){
 }
 ```
 
-###继承
-####关键字extends
+### 继承
+#### 关键字extends
 例如 `class Teacher extends Person{}` 表示Teacher类继承自Person类 
-####调用父类默认的方法 super
+#### 调用父类默认的方法 super
 
 ```
 class Teacher extends Person {
@@ -391,7 +391,7 @@ class Teacher extends Person {
     Teacher(String name, int age): super(name,  age);
 }
 ```
-####重写父类方法 @override(可以不加，但是一般会加上)
+#### 重写父类方法 @override(可以不加，但是一般会加上)
 
 ```
  class Person {
@@ -410,11 +410,11 @@ class Teacher extends Person{
 }
 ```
 
-##访问修饰符
-###私有属性和方法
+## 访问修饰符
+### 私有属性和方法
 > Dart中没有像Java语言中有public，private，protected这些访问修饰符，但是我们可以采用下划线_ 把一个属性或者方法定义成私有的，这一点跟Python的语法很像，但是应该注意的一点，当把该声明了私有方法或属性单独抽离为一个文件时，才生效，好比把Person类放在model目录下，然后其他文件引用了这个model，才变成不能访问的私有属性和方法
 
-###getter和setter修饰符
+### getter和setter修饰符
 
 以下是最原始的代码片段：
 
