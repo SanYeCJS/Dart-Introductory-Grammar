@@ -1,8 +1,10 @@
 # Dart语法一天快速入门篇 (Github发布版本)
 
+
 > 针对当下热门的Flutter跨平台开发语言，Dart语法是其根本，所以这里写了一篇关于Dart语法的文章，希望可以帮到各位快速入门Dart，觉得还不错的朋友麻烦动动手指头给个star支持下原创作教程，后续会出其他更多相关的开发教程
  
-> 作者：SanYeCJS
+* 作者：SanYeCJS 
+* github地址：https://github.com/SanYeCJS/Dart-Introductory-Grammar
 
 ## 环境安装篇
 
@@ -26,7 +28,8 @@ var a = 1和 int a = 1
 ### 常量修饰符final和const
 >const表示值不变，并且一开始就需要赋值
 >final也表示该值不能修改，但可以初始化不赋值，但是只能赋值一次
-代码参考如下：
+
+**示例代码**
 
 `final a = new DateTime.now();
  print(a);` <br>
@@ -45,7 +48,7 @@ var a = 1和 int a = 1
 * List,列表相对来说是支持动态操作的，增（add）,删（removeAt）,改（list[0]=null），长度（length属性）,插入（insert(index, element)）
 * List支持定义泛型，例如`var list = new List<String>();`
 
-* Map类型，可以直接用var定义，同样可以用强类型直接指定 var map = new Map();
+* Map类型，可以直接用var定义，同样支持泛型定义， 例如`var map = new Map<String, int>();`
 
 
 ### 类型判断 is  和 ？？= 和isEmpty
@@ -101,7 +104,7 @@ var a = 1和 int a = 1
 ### map 
 >说明 ：对list中的元素统一操作，例如统一加减乘除等
 
-示例
+**示例代码**
 
 ```
 var li = [1, 3, 5];
@@ -113,7 +116,7 @@ print(newLi);
 
 ### where条件
 
-示例
+**示例代码**
 
 ```
 var li = [1, 3, 5];
@@ -126,7 +129,7 @@ print(newLi);
 ### any条件
 >说明：判断是否对象当中有某个条件成立即返回true，好比列表中大于6的元素是否存在
 
-示例
+**示例代码**
 
 ```
 var li = [1, 3, 5];
@@ -335,7 +338,9 @@ p.getInfo();
 p?.getInfo();
 ```
 
-* as 类型转换,示例代码如下：
+* as 类型转换
+
+**示例代码**
 
 ```
 class Person {
@@ -407,6 +412,102 @@ class Teacher extends Person{
   void printInfo() {
     super.printInfo();
   }
+}
+```
+
+### 抽象类
+>Dart中的抽象类主要用于定义标准，这个跟Java语言有点像，在Dart中，抽象类也可以作为抽象类接口来使用， 抽象类通过关键字 abstract来定义，如果想作为接口来使用定义一套标准，可以用关键字 implements来使用
+
+#### 抽象方法 
+* Dart中，抽象方法不能用abstract来修饰，抽象类中没有方法体的方法我们可以称之为抽象方法
+* 如果子类继承抽象的父类就必须实现里面的所有抽象方法（也可以说是重写所有父类抽象方法，这里记得是抽象方法，抽象类可以存在非抽象方法）
+* 如果把抽象类作为接口来使用，就必须实现所有抽象类里面定义的所有属性与方法
+* 抽象类不能直接被实例化，只要子类才可以
+* 接口更多用于约束和规范，而抽象类更多用于共用某些方法
+
+**示例代码**
+
+```
+//抽象类 继承的子类必须实现抽象方法
+abstract class A {
+  printA();
+
+  printAA(){
+    print("AA");
+  }
+}
+
+//接口 实现该接口必须实现 方法+属性
+abstract class B {
+  String name;
+  printB();
+}
+
+
+class C extends A implements B {
+  @override
+  String name;
+
+  @override
+  printA() {
+    print('A');
+  }
+
+  @override
+  printB() {
+    print('B');
+  }
+}
+```
+
+### mixins
+> Dart中有一种方式能实现类似多继承，但实际不是继承,用关键字with
+
+**示例代码**
+
+```
+class A {
+  void printA(){
+
+  }
+
+  void getStr(){
+    print("this is A method");
+  }
+}
+
+class B {
+  void printB(){
+
+  }
+
+  void getStr(){
+    print("this is B method");
+  }
+}
+
+class C with A, B {
+  @override
+  void printA() {
+    print("重写的A方法");
+  }
+
+  @override
+  void printB() {
+    print("重写的B方法");
+  }
+}
+
+void main() {
+  C c = new C();
+  c.printA();
+  c.printB();
+
+  //A和B均有getStr 方法，调用哪个方法取决于with之后写的顺序有关，最后一个会覆盖前面所有的
+  c.getStr();  
+
+  print(c is A);  //true 
+  print(c is B);  //true
 }
 ```
 
@@ -498,9 +599,107 @@ main() {
 
 >② static修饰的方法不能访问非static修饰的属性
 
+## 泛型
+>说明：泛型是对类型的限定，例如List<String>这样就只能传入字符串类型的数据，List<int>这样只能传入int类型的数据
 
+**示例代码**
 
+```
+main() {
+  //可以用var也行
+  List<String> list = new List<String>();
+  list.add('hello');
+  list.add('world');
 
+  //以下这行代码报错
+  list.add(1);
+  
+  print(list);
+}
+```
 
+**Map类型指定泛型的如下**
 
+```
+main() {
+  var map = new Map<String, int>();
+  map.addAll({'no':1});
+
+  //以下这行代码报错
+  map.addAll({'username':'zhangsan'});
+
+  print(map);
+}
+```
+
+### 修饰方法
+>说明:修饰方法可以不对类型进行强制检查，能提高函数的复用性
+
+**示例代码**
+
+```
+
+T returnValue<T>(T value) {
+  return value;
+}
+
+main() {
+  String name = returnValue('zhangsan');
+  int age = returnValue(10);
+
+  print('$name  $age');
+}
+```
+
+**自定义List泛型输入**
+
+```
+
+class JSList<T> {
+  var list = new List<T>();
+
+  add(T value) {
+    this.list.add(value);
+  }
+}
+
+main() {
+  var list = JSList<String>();
+  list.add('helloworld');
+
+  //以下这行代码报错，因为JSList限定了输入类型
+  list.add(123);
+}
+```
+
+### 泛型配合接口实现
+
+```
+
+abstract class A<T> {
+  printInfo(T value);
+}
+
+class B<T> implements A<T> {
+  @override
+  printInfo(T value) {
+    print('这是B的输出类型');
+  }
+}
+
+class C<T> implements A<T> {
+  @override
+  printInfo(T value) {
+    print('这是C的输出类型');
+  }
+}
+
+main() {
+  var b = new B<String>();
+  var c = new C<int>();
+
+  b.printInfo('hello world');
+  c.printInfo(123);
+}
+```
 
