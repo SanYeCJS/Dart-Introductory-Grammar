@@ -1,6 +1,5 @@
 # Dart语法一天快速入门篇 (Github发布版本)
 
-
 > 针对当下热门的Flutter跨平台开发语言，Dart语法是其根本，所以这里写了一篇关于Dart语法的文章，希望可以帮到各位快速入门Dart，觉得还不错的朋友麻烦动动手指头给个star支持下原创作教程，后续会出其他更多相关的开发教程
  
 * 作者：SanYeCJS 
@@ -245,6 +244,16 @@ main() {
   Rect rect = new Rect();
   print(rect.area);
 }
+```
+
+**Flutter中生成对象通常会省略new关键字，如下代码片段**
+
+```
+var rect = Rect();
+
+//类似flutter中返回widget
+return Center();//此处省略了new关键字
+
 ```
 
 ### 默认构造函数
@@ -702,4 +711,5 @@ main() {
   c.printInfo(123);
 }
 ```
+
 
