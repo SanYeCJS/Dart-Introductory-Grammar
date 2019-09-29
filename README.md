@@ -16,7 +16,7 @@
 
 升级版本 `brew upgrade dart`
 
-vscode 需要安装 code runer 和 dart 两个插件
+vscode 需要安装 Code runner 和 Dart 两个插件
 
 ## 类型
 >Dart是强大的脚本类语言，可以不定义变量类型使用var字段(类似JavaScript)，系统会自动推导该变量类型
